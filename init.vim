@@ -9,33 +9,41 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 "set autoindent
+
 set number
 set relativenumber
+
 set cursorline
 set cursorcolumn
 set colorcolumn=60,80
 set incsearch
 set hlsearch
 set ignorecase
+
 set path+=**
 set wildmenu
 set wildignore+=**/node_modules/**
 set hidden
 
-"map <F1> :e init.vim or .vimrc path<CR>
+"map <F1> :e init.vim or .vimrc path<cr>
+map <F1> :e C/Users/josep/AppData/Local/nvim/init.vim <CR>
 map <F2> :set bg=dark<CR>
 map <F3> :set bg=light<CR>
-map <F4> :setlocal spell!<CR>
+map <F4> :setlocal spell!<CR> :hi SpellBad cterm=underline<CR> 
 
 inoremap jj <esc> 
 inoremap <space><space> <c-n>
 
 nnoremap ;; :w<CR>
-nnoremap ';; :wq<CR>
+nnoremap ;;' :wq<CR>
 nnoremap ''' :q<CR>
 nnoremap <BS> <C-6>
 nnoremap <tab><space> i<c-n>
+nnoremap <tab> z=
 nnoremap oo o<esc>
+nnoremap nn n
+nnoremap nm ]s 
+nnoremap nb [s
 
 let mapleader = " "
 map <leader>; <S-$>
@@ -83,7 +91,7 @@ colorscheme gruvbox
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
-"Mardown Viewer Settings
+"Markdown Viewer Settings
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
@@ -116,4 +124,4 @@ let g:mkdp_theme = 'dark'
 nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <C-p> <Plug>MarkdownPreviewToggle
-"end Markdown Priewview settings
+"end Markdown Prieview settings

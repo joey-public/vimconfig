@@ -1,6 +1,7 @@
 syntax on
 syntax enable
-"set keymap=dvorak
+
+";general settings
 set noswapfile
 set nowrap
 set scrolloff=12
@@ -8,34 +9,41 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-"set autoindent
-
 set number
 set relativenumber
-
 set cursorline
 set cursorcolumn
 set colorcolumn=60,80
 set incsearch
 set hlsearch
 set ignorecase
-
 set path+=**
 set wildmenu
 set wildignore+=**/node_modules/**
 set hidden
+au BufRead,BufNewFile *.md setlocal wrap "wrap in .md only
+let mapleader = " "
+"set keymap=dvorak
+"set autoindent
 
-"map <F1> :e init.vim or .vimrc path<cr>
-map <F1> :e C/Users/josep/AppData/Local/nvim/init.vim <CR>
-map <F2> :set bg=dark<CR>
-map <F3> :set bg=light<CR>
-map <F4> :setlocal spell!<CR> :hi SpellBad cterm=underline<CR> 
+";netrw settings
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
 
+";inoremap settings
+inoremap <C-s> <esc>:w<CR>
 inoremap jj <esc> 
-inoremap <space><space> <c-n>
+inoremap  <c-j> <c-n>
+inoremap  <c-k> <c-p>
+"inoremap <space><space> <c-n> "only isf ctrl is not mapped to CAPSLOCK
+"inoremap <c-s> <space>
 
-nnoremap ;; :w<CR>
-nnoremap ;;' :wq<CR>
+";nnoremap settings
+nnoremap <c-BS> db
+"nnoremap ; :w<CR>
+nnoremap <C-s> :w<CR>
+nnoremap ;;' :w<CR>:bd<CR>
 nnoremap ''' :q<CR>
 nnoremap <BS> <C-6>
 nnoremap <tab><space> i<c-n>
@@ -43,11 +51,17 @@ nnoremap <tab> z=
 nnoremap oo o<esc>
 nnoremap nn n
 nnoremap nm ]s 
-nnoremap nb [s
+nnoremap mn [s
+noremap <c-k> 0r#
+noremap <c-l> 0r 
 
-let mapleader = " "
+";map settings
+map <F1> :e C:/Users/josep/AppData/Local/nvim/init.vim <CR>
+map <F2> :set bg=dark<CR>:colorscheme zenburn<CR>
+map <F3> :set bg=light<CR>:colorscheme tokyonight<CR>
+map <F4> :setlocal spell!<CR> :hi SpellBad cterm=underline<CR> 
 map <leader>; <S-$>
-map <leader>a 0
+map <leader>a 0w
 map <leader>q <F1>
 map <leader>w <F2>
 map <leader>e <F3>
@@ -66,32 +80,38 @@ map <leader>jj <C-w>j
 map <leader>kk <C-w>k
 map <leader>ll <C-w>l
 map <leader>g <S-g>
-
 map <leader><CR> <esc>
 
+";plugins
 call plug#begin('C:/Users/josep/AppData/Local/nvim/autoload/plugged')
-
 Plug 'morhetz/gruvbox'
-"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'phha/zenburn.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-"Plug 'neoclide/coc.nvim', {'branch','release'}
-
+Plug 'neoclide/coc.nvim', {'branch':'release'}
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'habamax/vim-godot'
 call plug#end()
 
-let NERTreeSowLineNumbers=1
-autocmd FileType nerdtree setlocal relativenumber
+";nerdtree settings
+"let NERTreeSowLineNumbers=1
+"autocmd FileType nerdtree setlocal relativenumber
+"map <F5> :NERDTreeToggle<CR>
 
-colorscheme gruvbox
-"let g:airline_theme='gruvebox'
+";theme settings
+set bg=dark
+colorscheme zenburn 
+let g:airline_theme='zenburn'
 
+";vimwiki settings
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
-"Markdown Viewer Settings
+";markdown-viewer settings
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
@@ -124,4 +144,3 @@ let g:mkdp_theme = 'dark'
 nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <C-p> <Plug>MarkdownPreviewToggle
-"end Markdown Prieview settings

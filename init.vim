@@ -26,10 +26,20 @@ let mapleader = " "
 "set keymap=dvorak
 "set autoindent
 
+"lua commands
+lua vim.o.ch = 0
+
 ";netrw settings
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
+
+";fold settings
+"augroup AutoSaveFolds
+"  autocmd!
+"  autocmd BufWinLeave * mkview
+"  autocmd BufWinEnter * silent! loadview
+"augroup END
 
 ";inoremap settings
 inoremap <C-s> <esc>:w<CR>
@@ -57,11 +67,8 @@ noremap <c-l> 0r
 
 ";map settings
 map <F1> :e C:/Users/josep/AppData/Local/nvim/init.vim <CR>
-map <F2> :set bg=dark<CR>:colorscheme zenburn<CR>
-map <F3> :set bg=light<CR>:colorscheme tokyonight<CR>
+map <F2> :e C:/Users/josep/Documents/jobis_vailt/ 
 map <F4> :setlocal spell!<CR> :hi SpellBad cterm=underline<CR> 
-map <leader>; <S-$>
-map <leader>a 0w
 map <leader>q <F1>
 map <leader>w <F2>
 map <leader>e <F3>
@@ -81,6 +88,7 @@ map <leader>kk <C-w>k
 map <leader>ll <C-w>l
 map <leader>g <S-g>
 map <leader><CR> <esc>
+map <leader>c :Calendar<CR>
 
 ";plugins
 call plug#begin('C:/Users/josep/AppData/Local/nvim/autoload/plugged')
@@ -89,12 +97,13 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'phha/zenburn.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
+Plug 'itchyny/calendar.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-Plug 'neoclide/coc.nvim', {'branch':'release'}
+"Plug 'neoclide/coc.nvim', {'branch':'release'}
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Plug 'habamax/vim-godot'
+"Plug 'scrooloose/nerdtree'
 call plug#end()
 
 ";nerdtree settings
@@ -104,12 +113,17 @@ call plug#end()
 
 ";theme settings
 set bg=dark
-colorscheme zenburn 
-let g:airline_theme='zenburn'
+colorscheme gruvbox 
+let g:airline_theme='gruvbox'
+let g:gruvebox_transparent_bg = 1
+let g:gruvbox_bold = 1
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_light = 'soft'
 
 ";vimwiki settings
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_markdown_link_ext = 1
 
 ";markdown-viewer settings
 let g:mkdp_auto_start = 0

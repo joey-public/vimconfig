@@ -66,8 +66,8 @@ noremap <c-k> 0r#
 noremap <c-l> 0r 
 
 ";map settings
-map <F1> :e C:/Users/josep/AppData/Local/nvim/init.vim <CR>
-map <F2> :e C:/Users/josep/Documents/jobis_vailt/ 
+"map <F1> :e C:/Users/josep/AppData/Local/nvim/init.vim <CR>
+"map <F2> :e C:/Users/josep/Documents/jobis_vailt/ 
 map <F4> :setlocal spell!<CR> :hi SpellBad cterm=underline<CR> 
 map <leader>q <F1>
 map <leader>w <F2>
